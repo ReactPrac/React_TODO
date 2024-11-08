@@ -25,9 +25,11 @@ code {
   /* margin:0px 360px; */
   width :380px;
   margin : 0px auto;
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
+
+  &:nth-child(2){
+    display: flex;
+    justify-content: center;
+  }
 }   
 
 body{
@@ -165,7 +167,7 @@ body{
 }
 
 
-/* 캘린더의 전체 배경과 외곽선 */
+/* 캘린더 */
 .react-calendar {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -176,7 +178,7 @@ body{
   gap: 10px;
 }
 
-/* 날짜 버튼 스타일 */
+/* 날짜 버튼 */
 .react-calendar button {
   background-color: #f7f7f7;
   border: none;
@@ -204,7 +206,7 @@ body{
   cursor: not-allowed;
 }
 
-/* 오늘 날짜 표시 */
+/* 오늘 날짜 */
 .react-calendar .react-calendar__tile--now {
   background-color: coral;
   color: white;
@@ -212,7 +214,7 @@ body{
   box-shadow: 3px 3px 3px lightgray;
 }
 
-/* 날짜 선택 시 */
+/* 날짜 선택 */
 .react-calendar .react-calendar__tile--active {
   background-color: yellowgreen;
   color: white;
@@ -220,7 +222,7 @@ body{
   box-shadow: 3px 3px 3px lightgray;
 }
 
-/* 헤더 스타일 (달력 상단) */
+/* 헤더 */
 .react-calendar__navigation {
   display: flex;
   justify-content: space-between;
@@ -243,7 +245,7 @@ body{
   padding: 5px;
 }
 
-/* 주차 열 스타일 (월, 화, 수, ...) */
+/* 월, 화, 수, ... 열 */
 .react-calendar__month-view__weekdays {
   display: flex;
   justify-content: space-between;
@@ -262,7 +264,7 @@ body{
   text-decoration: none;
 }
 
-/* 선택된 날짜 외곽선 스타일 */
+/* 선택된 날짜 외곽선 */
 .react-calendar__tile--active {
   border: 2px solid #ff6f61;
   border-radius: 50%;
