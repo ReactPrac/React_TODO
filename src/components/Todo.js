@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import AddTodo from "./AddTodo";
 import TodoList from "./TodoList";
+import CalendarComponent from "./Calendar";
 
 function Todo() {
     const [todoList, setTodoList] = useState([]);
@@ -9,6 +10,8 @@ function Todo() {
     
     // input에 대한 ref 생성
     const inputRefs = useRef([]);
+
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     // 할 일 추가
     const handleAddTodo = (e) => {
@@ -56,6 +59,12 @@ function Todo() {
         });
         setTodoList(updatedList);
         setInputValue(""); // 입력 필드 초기화
+
+        // 포커스 해제
+        const index = todoList.findIndex(item => item.id === id);
+        if (inputRefs.current[index]) {
+            inputRefs.current[index].blur();
+        }
     };
 
     // 삭제
@@ -63,7 +72,23 @@ function Todo() {
         setTodoList(todoList.filter((item) => item.id !== id)); // 선택된 ID 제외
     };
 
+    // 완료 여부
+    const handleDoneTodo = (id) => {
+        setTodoList(
+            todoList.map((item) =>
+                item.id === id ? {...item, isDone: !item.isDone} : item
+            )
+        );
+    };
+
+    // 유효성
     const isValid = (todo) => todo !== "";
+
+    // 캘린더
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        console.log("Selected date:", date);
+    };
 
     return (
         <div className="wrapper">
@@ -83,6 +108,13 @@ function Todo() {
                         setInputValue={setInputValue}
                         handleDeleteTodo={handleDeleteTodo}
                         inputRefs={inputRefs}
+                        handleDoneTodo={handleDoneTodo}
+                    />
+                </section>
+                <section className="layout-360">
+                    <CalendarComponent 
+                        handleDateChange={handleDateChange}
+                        selectedDate={selectedDate}
                     />
                 </section>
             </main>

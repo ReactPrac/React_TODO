@@ -8,18 +8,25 @@ const TodoList = ({
     setInputValue,
     handleDeleteTodo,
     inputRefs,
+    handleDoneTodo,
 }) => {
     return (
         <div className="items">
             {todoList.map((item, index) => (
-                <div key={item.id}>
+                <div className="item" key={item.id}>
                     <div className="fragment"></div>
+                    <div className="done">
+                        <a href="#!" onClick={() => handleDoneTodo(item.id)}>
+                            <span className="material-symbols-outlined" style={{color: item.isDone ? "red" : "black"}}>check_circle</span>
+                        </a>
+                    </div>
                     <input
                         ref={(el) => inputRefs.current[index] = el}  // 각 input에 ref 설정
                         className="todo form-control"
                         value={item.isEdit ? inputValue : item.todo} // 수정 모드일 때 inputValue 사용
                         onChange={(e) => setInputValue(e.target.value)} // 입력값 변경
                         readOnly={!item.isEdit} // 수정 모드일 때만 입력 가능
+                        disabled={item.isDone}
                         style={{
                             color: item.isEdit ? "red" : "black", // 수정 모드일 때 색상 변경
                         }}
