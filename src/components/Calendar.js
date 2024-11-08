@@ -10,6 +10,8 @@ const CustomCalendar = () => {
         <Calendar
         onChange={setDate}
         value={date}
+        locale='ko-KR'
+        calendarType='hebrew'
         formatDay={(locale, date) => date.getDate()} 
         />
     </div>
